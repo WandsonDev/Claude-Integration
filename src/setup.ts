@@ -1,20 +1,22 @@
 import { input, select, checkbox, confirm } from "@inquirer/prompts";
 import fs from "fs";
+import path from "path";
 import type { Config, ToolGroup, TunnelMode } from "./types.js";
 import { PERMISSION_PRESETS, TOOL_GROUPS } from "./types.js";
 
 export async function runInteractiveSetup(partial: Partial<Config>): Promise<Config> {
   console.log("");
 
-  const dir = partial.dir ?? await input({
+  const rawDir = partial.dir ?? await input({
     message: "Project directory path:",
     default: process.cwd(),
     validate: (v) => {
       if (!v.trim()) return "Directory is required";
-      if (!fs.existsSync(v)) return `Directory not found: ${v}`;
+      if (!fs.existsSync(path.resolve(v))) return `Directory not found: ${path.resolve(v)}`;
       return true;
     },
   });
+  const dir = path.resolve(rawDir);
 
   const port = partial.port ?? parseInt(
     await input({
@@ -101,7 +103,7 @@ export async function runInteractiveSetup(partial: Partial<Config>): Promise<Con
 
 export function buildAutoConfig(dir: string, port = 3001): Config {
   return {
-    dir,
+    dir: path.resolve(dir),
     port,
     tunnel: "temp",
     permissions: "all",
