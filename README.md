@@ -100,14 +100,14 @@ Claude will now have full access to your project.
 
 | Preset     | Tools included                                              |
 |------------|-------------------------------------------------------------|
-| `all`      | Read, Write, Delete, Shell, Python, Memory                  |
-| `safe`     | Read, Write, Memory (no delete, no shell)                   |
+| `all`      | Read, Write, Delete, Shell, Python, Memory, Git             |
+| `safe`     | Read, Write, Memory, Git (no delete, no shell)              |
 | `readonly` | Read, Memory                                                |
 | `custom`   | Interactive selection of specific tool groups               |
 
 ---
 
-## Available Tools (28 total)
+## Available Tools (36 total)
 
 ### Filesystem Read (9 tools)
 | Tool              | Description                                        |
@@ -157,6 +157,18 @@ Claude will now have full access to your project.
 |----------------|-----------------------------------------------------|
 | `memory_read`  | Read persistent session context                     |
 | `memory_write` | Update session context, pending tasks, recent files |
+
+### Git (8 tools)
+| Tool            | Description                                          |
+|-----------------|------------------------------------------------------|
+| `git_status`    | Show working tree status (modified, staged, untracked) |
+| `git_diff`      | Show unstaged or staged changes, optionally per file |
+| `git_log`       | Show recent commit history                           |
+| `git_add`       | Stage files for commit                               |
+| `git_commit`    | Create a commit with a message                       |
+| `git_branch`    | List branches or create a new one                    |
+| `git_checkout`  | Switch branch or restore a file to last commit       |
+| `git_stash`     | Push, pop, or list stashes                           |
 
 ### Flutter (3 tools — optional)
 | Tool             | Description                        |

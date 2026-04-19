@@ -53,11 +53,11 @@ export async function runInteractiveSetup(partial: Partial<Config>): Promise<Con
     message: "Permissions (tool access level):",
     choices: [
       {
-        name: "All  — full access (read, write, delete, shell, python, memory)",
+        name: "All  — full access (read, write, delete, shell, python, memory, git)",
         value: "all",
       },
       {
-        name: "Safe — read + write, no delete, no shell",
+        name: "Safe — read + write + git, no delete, no shell",
         value: "safe",
       },
       {

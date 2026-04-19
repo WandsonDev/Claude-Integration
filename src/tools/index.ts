@@ -3,6 +3,7 @@ import { shellTools } from "./shell.js";
 import { flutterTools } from "./flutter.js";
 import { pythonTools } from "./python.js";
 import { memoryTools } from "./memory.js";
+import { gitTools } from "./git.js";
 import type { ToolGroup } from "../types.js";
 
 export interface Tool {
@@ -27,6 +28,7 @@ export function buildToolset(root: string, groups: ToolGroup[]): Tool[] {
   if (has("flutter")) tools.push(...(flutterTools(root) as unknown as Tool[]));
   if (has("python")) tools.push(...(pythonTools(root) as unknown as Tool[]));
   if (has("memory")) tools.push(...(memoryTools(root) as unknown as Tool[]));
+  if (has("git")) tools.push(...(gitTools(root) as unknown as Tool[]));
 
   return tools;
 }

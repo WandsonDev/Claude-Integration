@@ -19,7 +19,8 @@ export type ToolGroup =
   | "shell"
   | "flutter"
   | "python"
-  | "memory";
+  | "memory"
+  | "git";
 
 export const TOOL_GROUPS: Record<ToolGroup, string> = {
   "filesystem-read": "Filesystem Read (list, read, search, diff, stats)",
@@ -29,6 +30,7 @@ export const TOOL_GROUPS: Record<ToolGroup, string> = {
   flutter: "Flutter (analyze, doctor, test)",
   python: "Python (run scripts and commands)",
   memory: "Memory (read/write persistent session context)",
+  git: "Git (status, diff, log, add, commit, branch, checkout, stash)",
 };
 
 export const PERMISSION_PRESETS: Record<PermissionSet, ToolGroup[]> = {
@@ -40,8 +42,9 @@ export const PERMISSION_PRESETS: Record<PermissionSet, ToolGroup[]> = {
     "flutter",
     "python",
     "memory",
+    "git",
   ],
   readonly: ["filesystem-read", "memory"],
-  safe: ["filesystem-read", "filesystem-write", "memory"],
+  safe: ["filesystem-read", "filesystem-write", "memory", "git"],
   custom: [],
 };
