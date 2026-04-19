@@ -97,26 +97,8 @@ async function main() {
       tunnel: (opts.tunnel as Config["tunnel"]) ?? "temp",
       tunnelName: opts.tunnelName,
     };
-  } else if (opts.dir || process.argv.length <= 2) {
-    const { PERMISSION_PRESETS } = await import("./types.js");
-    const preset = (opts.permissions as keyof typeof PERMISSION_PRESETS) in PERMISSION_PRESETS
-      ? (opts.permissions as keyof typeof PERMISSION_PRESETS)
-      : "all";
-
-    config = {
-      dir: opts.dir ?? process.cwd(),
-      port: parseInt(opts.port, 10),
-      tunnel: (opts.tunnel as Config["tunnel"]) ?? "temp",
-      tunnelName: opts.tunnelName,
-      permissions: preset,
-      enabledGroups: PERMISSION_PRESETS[preset],
-      auto: false,
-    };
-
-    if (!opts.dir) {
-      config = await runInteractiveSetup(config);
-    }
   } else {
+    // always interactive — only pre-fill dir if explicitly passed via --dir
     config = await runInteractiveSetup({
       dir: opts.dir,
       port: parseInt(opts.port, 10),
